@@ -977,7 +977,7 @@ export default function Home() {
           </div>
 
           <div className="mt-14 flex flex-col gap-4 border-t border-slate-800/70 pt-7 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} Nuvobix. All rights reserved.</p>
+<p>© 2026 Nuvobix. All rights reserved.</p>
             <a
               href="#home"
               className="inline-flex items-center gap-2 transition hover:text-cyan-300"
