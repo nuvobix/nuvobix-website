@@ -349,100 +349,114 @@ export default function Home() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#080D1A] text-[#F8FAFC] selection:bg-blue-400 selection:text-[#080D1A]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            name: "Nuvobix",
+            url: "https://nuvobix.vercel.app/",
+            email: email,
+            telephone: "+923260596245",
+            description:
+              "Nuvobix builds Shopify stores, e-commerce websites, WordPress websites, and modern responsive web experiences.",
+            areaServed: "Worldwide",
+            sameAs: socials.map((social) => social.url),
+            knowsAbout: [
+              "Shopify development",
+              "E-commerce website development",
+              "WordPress development",
+              "Web design",
+              "UI/UX design",
+              "Website redesign",
+              "Website maintenance",
+            ],
+          }),
+        }}
+      />
+
       {/* NAVBAR */}
-     
-{/* NAVBAR */}
-<header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8">
-  <div className="mx-auto max-w-7xl">
-    <div className="relative flex h-[72px] items-center justify-between rounded-2xl border border-white/[0.09] bg-[#080D1A]/85 px-5 shadow-[0_12px_45px_rgba(0,0,0,0.28)] backdrop-blur-2xl md:px-7">
+      <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="relative flex h-[72px] items-center justify-between rounded-2xl border border-white/[0.09] bg-[#080D1A]/85 px-5 shadow-[0_12px_45px_rgba(0,0,0,0.28)] backdrop-blur-2xl md:px-7">
+            <a
+              href="#home"
+              className="group relative z-10 flex shrink-0 items-center"
+              aria-label="Nuvobix home"
+            >
+              <img
+                src="/nuvobix-logo.png"
+                alt="Nuvobix web development and e-commerce agency logo"
+                className="h-8 w-auto object-contain transition duration-300 group-hover:scale-[1.03]"
+              />
+            </a>
 
-      {/* LOGO */}
-      <a
-        href="#home"
-        className="group relative z-10 flex shrink-0 items-center"
-        aria-label="Nuvobix home"
-      >
-        <img
-          src="/nuvobix-logo.png"
-          alt="Nuvobix Logo"
-          className="h-8 w-auto object-contain transition duration-300 group-hover:scale-[1.03]"
-        />
-      </a>
+            <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 rounded-full border border-white/[0.06] bg-white/[0.025] p-1.5 lg:flex" aria-label="Main navigation">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="rounded-full px-4 py-2.5 text-[13px] font-medium text-slate-400 transition-all duration-300 hover:bg-blue-500/10 hover:text-blue-300"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
 
-      {/* DESKTOP NAVIGATION */}
-      <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 rounded-full border border-white/[0.06] bg-white/[0.025] p-1.5 lg:flex">
-        {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className="rounded-full px-4 py-2.5 text-[13px] font-medium text-slate-400 transition-all duration-300 hover:bg-blue-500/10 hover:text-blue-300"
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
+            <a
+              href="#contact"
+              className="group hidden items-center gap-2 rounded-xl border border-blue-400/30 bg-blue-500/10 px-5 py-3 text-sm font-semibold text-blue-200 transition-all duration-300 hover:border-blue-300/60 hover:bg-blue-500/20 hover:shadow-[0_0_25px_rgba(59,130,246,0.16)] md:flex"
+            >
+              Let's Talk
+              <ArrowUpRight size={16} />
+            </a>
 
-      {/* DESKTOP CTA */}
-      <a
-        href="#contact"
-        className="group hidden items-center gap-2 rounded-xl border border-blue-400/30 bg-blue-500/10 px-5 py-3 text-sm font-semibold text-blue-200 transition-all duration-300 hover:border-blue-300/60 hover:bg-blue-500/20 hover:shadow-[0_0_25px_rgba(59,130,246,0.16)] md:flex"
-      >
-        Let's Talk
-        <ArrowUpRight
-          size={16}
-          className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-        />
-      </a>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-300 md:flex lg:hidden"
+              aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <X size={21} /> : <Menu size={21} />}
+            </button>
+          </div>
 
-      {/* MOBILE MENU BUTTON */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-200 transition hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-300 md:flex lg:hidden"
-        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-        aria-expanded={menuOpen}
-      >
-        {menuOpen ? <X size={21} /> : <Menu size={21} />}
-      </button>
-    </div>
-
-    {/* MOBILE NAVIGATION */}
-    {menuOpen && (
-      <motion.nav
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2 }}
-        className="mt-2 rounded-2xl border border-white/[0.09] bg-[#0B1220]/95 p-3 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-2xl md:ml-auto md:max-w-sm lg:hidden"
-      >
-        {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            onClick={() => setMenuOpen(false)}
-            className="flex items-center justify-between rounded-xl px-4 py-3.5 text-sm text-slate-300 transition hover:bg-blue-500/10 hover:text-blue-300"
-          >
-            {link.label}
-            <ArrowUpRight size={15} className="text-blue-400/70" />
-          </a>
-        ))}
-
-        <a
-          href="#contact"
-          onClick={() => setMenuOpen(false)}
-          className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 px-5 py-3.5 text-sm font-bold text-white shadow-[0_8px_25px_rgba(59,130,246,0.18)] transition hover:brightness-110"
-        >
-          Let's Talk
-          <ArrowUpRight size={16} />
-        </a>
-      </motion.nav>
-    )}
-  </div>
-</header>
-
+          {menuOpen && (
+            <motion.nav
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              aria-label="Mobile navigation"
+              className="mt-2 rounded-2xl border border-white/[0.09] bg-[#0B1220]/95 p-3 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-2xl md:ml-auto md:max-w-sm lg:hidden"
+            >
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center justify-between rounded-xl px-4 py-3.5 text-sm text-slate-300 transition hover:bg-blue-500/10 hover:text-blue-300"
+                >
+                  {link.label}
+                  <ArrowUpRight size={15} className="text-blue-400/70" />
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 px-5 py-3.5 text-sm font-bold text-white"
+              >
+                Let's Talk <ArrowUpRight size={16} />
+              </a>
+            </motion.nav>
+          )}
+        </div>
+      </header>
 
       {/* HERO */}
       <section
-      
         id="home"
+        aria-labelledby="hero-heading"
         className="relative isolate flex min-h-screen items-center overflow-hidden px-5 pb-20 pt-32 md:px-8"
         style={{
           background:
@@ -464,9 +478,9 @@ export default function Home() {
         <div className="pointer-events-none absolute bottom-[10%] right-[35%] -z-10 h-52 w-52 rounded-full bg-cyan-500/10 blur-[100px]" />
 
         <div className="pointer-events-none absolute right-[9%] top-[22%] -z-10 hidden h-52 w-52 rotate-[-25deg] opacity-50 md:block">
-          <div className="absolute top-8 h-px w-full bg-gradient-to-r from-transparent via-blue-400 to-transparent shadow-[0_0_14px_rgba(59,130,246,0.6)]" />
-          <div className="absolute top-20 right-5 h-px w-full bg-gradient-to-r from-transparent via-blue-400 to-transparent shadow-[0_0_14px_rgba(79,140,255,0.6)]" />
-          <div className="absolute top-32 right-10 h-px w-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_14px_rgba(34,211,238,0.5)]" />
+          <div className="absolute top-8 h-px w-full bg-gradient-to-r from-transparent via-blue-400 to-transparent" />
+          <div className="absolute top-20 right-5 h-px w-full bg-gradient-to-r from-transparent via-blue-400 to-transparent" />
+          <div className="absolute top-32 right-10 h-px w-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-7xl">
@@ -476,55 +490,47 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-5xl"
           >
-            <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-blue-400/20 bg-[#0B1220]/70 px-4 py-2.5 text-xs tracking-[0.14em] text-slate-300 shadow-[0_8px_35px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+            <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-blue-400/20 bg-[#0B1220]/70 px-4 py-2.5 text-xs tracking-[0.14em] text-slate-300">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-300 opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.9)]" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-300" />
               </span>
               DIGITAL SOLUTIONS FOR MODERN BRANDS
             </div>
 
-            <h1 className="max-w-5xl text-5xl font-semibold leading-[1.08] tracking-[-0.055em] sm:text-6xl md:text-7xl lg:text-[88px]">
-              We build digital
+            <h1
+              id="hero-heading"
+              className="max-w-5xl text-5xl font-semibold leading-[1.08] tracking-[-0.055em] sm:text-6xl md:text-7xl lg:text-[88px]"
+            >
+              We build Shopify
               <span className="block bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text text-transparent">
-                experiences that
+                stores &amp; e-commerce
               </span>
-              move your business
+              websites that help
               <span className="block">
-                forward
-                <span className="text-cyan-300 drop-shadow-[0_0_24px_rgba(34,211,238,0.45)]">
-                  .
-                </span>
+                businesses grow
+                <span className="text-cyan-300">.</span>
               </span>
             </h1>
 
             <p className="mt-8 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
-              Nuvobix helps businesses grow with modern websites, powerful
-              e-commerce solutions, and creative digital design built for
-              lasting impact.
+              Nuvobix builds professional Shopify stores, e-commerce websites,
+              WordPress websites, and responsive digital experiences that help
+              businesses showcase their products and grow online.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 px-7 py-4 text-sm font-bold text-white shadow-[0_10px_35px_rgba(59,130,246,0.23)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_45px_rgba(59,130,246,0.38)]"
+                className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 px-7 py-4 text-sm font-bold text-white"
               >
-                Start a Project
-                <ArrowUpRight
-                  size={17}
-                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                />
+                Start a Project <ArrowUpRight size={17} />
               </a>
-
               <a
                 href="#work"
-                className="group inline-flex items-center gap-2 rounded-full border border-slate-600/80 bg-[#0B1220]/65 px-7 py-4 text-sm font-medium text-white backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:bg-blue-500/5 hover:shadow-[0_12px_35px_rgba(59,130,246,0.12)]"
+                className="group inline-flex items-center gap-2 rounded-full border border-slate-600/80 bg-[#0B1220]/65 px-7 py-4 text-sm font-medium text-white"
               >
-                Explore Our Portfolio
-                <ArrowDownRight
-                  size={17}
-                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
-                />
+                Explore Our Portfolio <ArrowDownRight size={17} />
               </a>
             </div>
 
@@ -548,7 +554,7 @@ export default function Home() {
                 DESIGNING WHAT COMES NEXT
               </span>
               <span className="flex items-center gap-2 text-xs text-slate-400">
-                <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.8)]" />
+                <span className="h-2 w-2 rounded-full bg-cyan-300" />
                 AVAILABLE FOR NEW PROJECTS
               </span>
             </div>
@@ -557,14 +563,14 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="border-t border-slate-800/70 px-5 py-24 md:px-8 md:py-32">
+      <section id="services" aria-labelledby="services-heading" className="border-t border-slate-800/70 px-5 py-24 md:px-8 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 md:grid-cols-2 md:items-end">
             <div>
               <SectionLabel>SERVICES</SectionLabel>
-              <h2 className="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">
-                Digital solutions.
-                <span className="block text-slate-500">Real possibilities.</span>
+              <h2 id="services-heading" className="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">
+                Shopify &amp; web development.
+                <span className="block text-slate-500">Digital solutions for growth.</span>
               </h2>
             </div>
             <p className="max-w-lg leading-8 text-slate-400 md:justify-self-end">
@@ -588,7 +594,7 @@ export default function Home() {
                   className={`${cardStyle} group p-6`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-500/[0.08] text-blue-300 transition duration-300 group-hover:border-blue-300/50 group-hover:bg-blue-500/15 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.12)]">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-500/[0.08] text-blue-300">
                       <Icon size={23} strokeWidth={1.6} />
                     </span>
                     <span className="text-xs text-slate-600">{service.number}</span>
@@ -600,11 +606,7 @@ export default function Home() {
                     {service.description}
                   </p>
                   <div className="mt-7 flex items-center justify-between border-t border-slate-700/60 pt-5 text-sm text-slate-300">
-                    Discuss service
-                    <ArrowUpRight
-                      size={17}
-                      className="transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cyan-300"
-                    />
+                    Discuss service <ArrowUpRight size={17} />
                   </div>
                 </motion.a>
               );
@@ -614,18 +616,18 @@ export default function Home() {
       </section>
 
       {/* PORTFOLIO */}
-      <section id="work" className="border-t border-slate-800/70 bg-[#0B1220] px-5 py-24 md:px-8 md:py-32">
+      <section id="work" aria-labelledby="portfolio-heading" className="border-t border-slate-800/70 bg-[#0B1220] px-5 py-24 md:px-8 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <SectionLabel>OUR PORTFOLIO</SectionLabel>
-              <h2 className="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">
+              <h2 id="portfolio-heading" className="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">
                 Ideas into <span className="text-slate-500">experiences.</span>
               </h2>
             </div>
             <p className="max-w-md leading-7 text-slate-400">
-              Explore our portfolio of digital projects, website experiences,
-              and creative design concepts.
+              Explore selected e-commerce websites, Shopify store designs,
+              WordPress projects, and custom web development work from Nuvobix.
             </p>
           </div>
 
@@ -648,18 +650,17 @@ export default function Home() {
                 >
                   <img
                     src={project.image}
-                    alt={`${project.title} website preview`}
+                    alt={`${project.title} ${project.category.toLowerCase()} website project by Nuvobix`}
                     loading="lazy"
                     className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.04]"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/10" />
-                  <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-slate-950/80 px-3 py-1.5 text-xs tracking-wider text-white backdrop-blur">
+                  <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-slate-950/80 px-3 py-1.5 text-xs tracking-wider text-white">
                     {project.category}
                   </span>
-                  <span className="absolute right-5 top-5 rounded-full bg-slate-950/80 px-3 py-1.5 text-xs text-white backdrop-blur">
+                  <span className="absolute right-5 top-5 rounded-full bg-slate-950/80 px-3 py-1.5 text-xs text-white">
                     {project.number}
                   </span>
-                  <span className="absolute bottom-5 right-5 flex items-center gap-2 rounded-full border border-white/20 bg-slate-950/80 px-4 py-2 text-sm text-white backdrop-blur transition group-hover:border-cyan-300/60 group-hover:text-cyan-300">
+                  <span className="absolute bottom-5 right-5 flex items-center gap-2 rounded-full border border-white/20 bg-slate-950/80 px-4 py-2 text-sm text-white">
                     Visit Website <ArrowUpRight size={16} />
                   </span>
                 </a>
@@ -697,27 +698,27 @@ export default function Home() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="border-t border-slate-800/70 px-5 py-24 md:px-8 md:py-32">
+      <section id="about" aria-labelledby="about-heading" className="border-t border-slate-800/70 px-5 py-24 md:px-8 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 md:items-center">
           <div>
-            <SectionLabel>ABOUT</SectionLabel>
-            <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-              Good design.
-              <span className="block text-slate-500">Thoughtful technology.</span>
-              Better experiences.
+            <SectionLabel>ABOUT NUVOBIX</SectionLabel>
+            <h2 id="about-heading" className="mt-5 text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
+              A digital agency for
+              <span className="block text-slate-500">Shopify &amp; e-commerce.</span>
+              Better web experiences.
             </h2>
           </div>
           <div>
             <p className="text-base leading-8 text-slate-400">
-              Nuvobix is a digital agency focused on helping businesses
-              establish and improve their online presence. We bring together
-              modern design, practical development, and a clear understanding
-              of what your business needs.
+              Nuvobix is a web development and digital design agency helping
+              businesses establish and improve their online presence. We create
+              Shopify stores, e-commerce websites, WordPress websites, and
+              user-friendly digital experiences tailored to each brand.
             </p>
             <p className="mt-5 text-base leading-8 text-slate-400">
-              Whether you need a business website, an e-commerce store, or
-              creative digital content, our goal is to deliver a professional
-              experience that fits your brand.
+              Whether you need a business website, a Shopify store, an online
+              shop, a website redesign, or creative digital content, our goal
+              is to deliver a professional experience that fits your brand.
             </p>
             <a
               href="#contact"
@@ -730,11 +731,11 @@ export default function Home() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="border-t border-slate-800/70 bg-[#0B1220] px-5 py-24 md:px-8 md:py-32">
+      <section id="contact" aria-labelledby="contact-heading" className="border-t border-slate-800/70 bg-[#0B1220] px-5 py-24 md:px-8 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2">
           <div>
             <SectionLabel>GET IN TOUCH</SectionLabel>
-            <h2 className="mt-5 text-5xl font-semibold leading-tight tracking-tight md:text-7xl">
+            <h2 id="contact-heading" className="mt-5 text-5xl font-semibold leading-tight tracking-tight md:text-7xl">
               Let's make <span className="block text-slate-500">it happen.</span>
             </h2>
             <p className="mt-7 max-w-md leading-8 text-slate-400">
@@ -749,7 +750,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="group flex items-center gap-4 text-slate-300 transition hover:text-white"
               >
-                <span className="rounded-xl border border-slate-700 bg-[#080D1A] p-3 text-blue-300 transition group-hover:border-blue-400/50 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.10)]">
+                <span className="rounded-xl border border-slate-700 bg-[#080D1A] p-3 text-blue-300">
                   <MessageCircle size={20} />
                 </span>
                 <span>
@@ -764,7 +765,7 @@ export default function Home() {
                 href={`mailto:${email}`}
                 className="group flex items-center gap-4 text-slate-300 transition hover:text-white"
               >
-                <span className="rounded-xl border border-slate-700 bg-[#080D1A] p-3 text-blue-300 transition group-hover:border-blue-400/50 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.10)]">
+                <span className="rounded-xl border border-slate-700 bg-[#080D1A] p-3 text-blue-300">
                   <Mail size={20} />
                 </span>
                 <span>
@@ -785,8 +786,9 @@ export default function Home() {
                   name="name"
                   required
                   maxLength={100}
+                  autoComplete="name"
                   placeholder="Enter your name"
-                  className="mt-2 w-full rounded-xl border border-slate-700 bg-[#080D1A] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400/70 focus:ring-2 focus:ring-blue-400/10"
+                  className="mt-2 w-full rounded-xl border border-slate-700 bg-[#080D1A] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400/70"
                 />
               </label>
 
@@ -797,8 +799,9 @@ export default function Home() {
                   type="email"
                   required
                   maxLength={254}
+                  autoComplete="email"
                   placeholder="you@example.com"
-                  className="mt-2 w-full rounded-xl border border-slate-700 bg-[#080D1A] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400/70 focus:ring-2 focus:ring-blue-400/10"
+                  className="mt-2 w-full rounded-xl border border-slate-700 bg-[#080D1A] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400/70"
                 />
               </label>
             </div>
@@ -831,7 +834,7 @@ export default function Home() {
                 maxLength={5000}
                 rows={5}
                 placeholder="Tell us about your project..."
-                className="mt-2 w-full resize-y rounded-xl border border-slate-700 bg-[#080D1A] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400/70 focus:ring-2 focus:ring-blue-400/10"
+                className="mt-2 w-full resize-y rounded-xl border border-slate-700 bg-[#080D1A] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400/70"
               />
             </label>
 
@@ -853,7 +856,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={contactLoading}
-              className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 px-6 py-4 text-sm font-bold text-white shadow-[0_10px_30px_rgba(59,130,246,0.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_15px_40px_rgba(59,130,246,0.3)] disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 px-6 py-4 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-60"
             >
               {contactLoading ? "Sending Message..." : "Send Message"}
               <Send size={16} />
@@ -871,11 +874,12 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr]">
             <div>
-              <a href="#home" className="group flex items-center">
+              <a href="#home" className="group flex items-center" aria-label="Nuvobix home">
                 <img
                   src="/nuvobix-logo.png"
-                  alt="Nuvobix Logo"
+                  alt="Nuvobix web development and e-commerce agency logo"
                   className="h-10 w-auto object-contain"
+                  loading="lazy"
                 />
               </a>
               <p className="mt-5 max-w-xs text-sm leading-7 text-slate-400">
@@ -885,7 +889,7 @@ export default function Home() {
               <a
                 href={whatsapp}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-3 text-sm transition hover:border-blue-400/50 hover:bg-blue-500/5 hover:text-blue-200"
               >
                 <MessageCircle size={17} />
@@ -896,7 +900,7 @@ export default function Home() {
 
             <div>
               <h3 className="text-sm font-semibold">Quick Links</h3>
-              <div className="mt-5 space-y-4">
+              <nav aria-label="Footer navigation" className="mt-5 space-y-4">
                 {[
                   ["Home", "#home"],
                   ["Services", "#services"],
@@ -912,7 +916,7 @@ export default function Home() {
                     {label}
                   </a>
                 ))}
-              </div>
+              </nav>
             </div>
 
             <div>
@@ -932,21 +936,17 @@ export default function Home() {
 
             <div>
               <h3 className="text-sm font-semibold">Contact Us</h3>
-
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=nuvobix@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`mailto:${email}`}
                 className="mt-5 flex items-start gap-3 text-sm text-slate-400 transition hover:text-blue-300"
               >
                 <Mail size={17} className="mt-0.5 shrink-0" />
-                <span className="break-all">Email</span>
+                <span className="break-all">{email}</span>
               </a>
-
               <a
                 href={whatsapp}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="mt-4 flex items-center gap-3 text-sm text-slate-400 transition hover:text-blue-300"
               >
                 <MessageCircle size={17} />
@@ -964,9 +964,9 @@ export default function Home() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={social.name}
+                      aria-label={`Follow Nuvobix on ${social.name}`}
                       title={social.name}
-                      className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-700 text-slate-300 transition duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:bg-blue-500/10 hover:text-cyan-300 hover:shadow-[0_8px_25px_rgba(59,130,246,0.15)]"
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-700 text-slate-300 transition duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:bg-blue-500/10 hover:text-cyan-300"
                     >
                       <SocialIcon name={social.name} />
                     </a>
@@ -977,7 +977,7 @@ export default function Home() {
           </div>
 
           <div className="mt-14 flex flex-col gap-4 border-t border-slate-800/70 pt-7 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-            <p>© 2026 Nuvobix. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Nuvobix. All rights reserved.</p>
             <a
               href="#home"
               className="inline-flex items-center gap-2 transition hover:text-cyan-300"
@@ -994,14 +994,15 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 15, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            className="mb-4 w-[min(340px,calc(100vw-40px))] overflow-hidden rounded-2xl border border-blue-400/20 bg-[#0B1220]/95 shadow-[0_20px_70px_rgba(0,0,0,0.5),0_0_35px_rgba(59,130,246,0.08)] backdrop-blur-2xl"
+            className="mb-4 w-[min(340px,calc(100vw-40px))] overflow-hidden rounded-2xl border border-blue-400/20 bg-[#0B1220]/95 shadow-[0_20px_70px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
           >
             <div className="flex items-center justify-between border-b border-slate-700/60 p-4">
               <div className="flex min-w-0 flex-col items-start">
                 <img
                   src="/nuvobix-logo.png"
-                  alt="Nuvobix Logo"
+                  alt="Nuvobix web development and e-commerce agency logo"
                   className="h-6 w-auto max-w-[150px] object-contain object-left"
+                  loading="lazy"
                 />
                 <p className="mt-1 text-xs text-slate-500">
                   Automated responses
@@ -1017,13 +1018,13 @@ export default function Home() {
             </div>
 
             <div className="min-h-36 p-4">
-              <p className="rounded-xl border border-slate-700/60 bg-slate-800/40 p-4 text-sm leading-6 text-slate-300">
+              <p className="rounded-xl border border-slate-700/60 bg-slate-800/40 p-4 text-sm leading-6 text-slate-300" aria-live="polite">
                 {chatReply}
               </p>
               <a
                 href={whatsapp}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="mt-3 inline-flex items-center gap-2 text-xs text-slate-400 transition hover:text-cyan-300"
               >
                 <MessageCircle size={15} />
@@ -1039,12 +1040,13 @@ export default function Home() {
                 value={chatMessage}
                 onChange={(e) => setChatMessage(e.target.value)}
                 placeholder="Ask about our services..."
+                aria-label="Ask Nuvobix about its services"
                 className="min-w-0 flex-1 rounded-xl border border-slate-700 bg-[#080D1A] px-3 py-3 text-sm outline-none placeholder:text-slate-600 focus:border-blue-400/60"
               />
               <button
                 type="submit"
                 aria-label="Send message"
-                className="rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 px-3 text-white transition hover:shadow-[0_0_20px_rgba(59,130,246,0.25)]"
+                className="rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 px-3 text-white"
               >
                 <Send size={17} />
               </button>
@@ -1055,7 +1057,8 @@ export default function Home() {
         <button
           onClick={() => setChatOpen(!chatOpen)}
           aria-label={chatOpen ? "Close assistant" : "Open assistant"}
-          className="ml-auto flex h-14 w-14 items-center justify-center rounded-full border border-blue-200/30 bg-gradient-to-br from-blue-500 to-cyan-400 text-white shadow-[0_8px_30px_rgba(59,130,246,0.3)] transition duration-300 hover:scale-110 hover:shadow-[0_12px_40px_rgba(59,130,246,0.45)]"
+          aria-expanded={chatOpen}
+          className="ml-auto flex h-14 w-14 items-center justify-center rounded-full border border-blue-200/30 bg-gradient-to-br from-blue-500 to-cyan-400 text-white shadow-[0_8px_30px_rgba(59,130,246,0.3)] transition duration-300 hover:scale-110"
         >
           {chatOpen ? <X size={23} /> : <MessageCircle size={23} />}
         </button>
