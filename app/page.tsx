@@ -357,6 +357,7 @@ export default function Home() {
             "@type": "ProfessionalService",
             name: "Nuvobix",
             url: "https://nuvobix.vercel.app/",
+            image: "https://nuvobix.vercel.app/nuvobix-logo.png",
             email: email,
             telephone: "+923260596245",
             description:
